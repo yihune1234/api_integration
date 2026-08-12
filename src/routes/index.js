@@ -5,6 +5,7 @@ import apiKeysRouter from "./api-keys.js";
 import keyCheckRouter from "./key-check.js";
 import extractRouter from "./extract.js";
 import userRouter from "./user.routes.js";
+import adminRouter from "./admin.routes.js";
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use(apiKeysRouter);
 router.use(keyCheckRouter);
 router.use(extractRouter);
 router.use(userRouter);
+router.use(adminRouter);
 
 export default router;

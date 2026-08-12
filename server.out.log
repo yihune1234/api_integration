@@ -1,2 +1,1301 @@
-[11:42:37.450] [32mINFO[39m (23120): [36mServer listening[39m
+[11:19:34.167] [32mINFO[39m (5360): [36mDatabase connection established[39m
+[11:19:34.169] [32mINFO[39m (5360): [36mServer listening[39m
     [35mport[39m: 5000
+[11:53:11.815] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "GET",
+      "url": "/api/healthz"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 10
+[11:53:11.897] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 72
+[11:53:11.915] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 3,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/auth/register"
+[11:53:11.915] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 3,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 5
+[11:53:11.995] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 4,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 69
+[11:53:12.058] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 5,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/auth/login"
+[11:53:12.058] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 5,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 58
+[11:53:12.085] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 6,
+      "method": "POST",
+      "url": "/api/auth/refresh"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 8
+[11:53:12.105] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 7,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 16
+[11:53:12.134] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 8,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 8
+[11:53:12.139] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 9,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/api-keys"
+[11:53:12.140] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 9,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 2
+[11:53:12.148] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 10,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 5
+[11:53:12.159] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 11,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "MISSING_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:53:12.160] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 11,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 2
+[11:53:12.174] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 12,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "MISSING_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:53:12.175] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 12,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:53:12.181] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 13,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35merrorCode[39m: "MISSING_API_KEY"
+    [35mpath[39m: "/api/v1/extract"
+[11:53:12.181] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 13,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:53:12.190] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 14,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35merrorCode[39m: "MISSING_API_KEY"
+    [35mpath[39m: "/api/v1/extract"
+[11:53:12.191] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 14,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:53:12.209] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 15,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35merrorCode[39m: "MISSING_API_KEY"
+    [35mpath[39m: "/api/v1/extract"
+[11:53:12.209] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 15,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 0
+[11:53:12.233] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 16,
+      "method": "GET",
+      "url": "/api/user/usage"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 8
+[11:53:12.361] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 17,
+      "method": "POST",
+      "url": "/api/auth/change-password"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 118
+[11:53:12.432] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 18,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 56
+[11:53:12.440] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 19,
+      "method": "POST",
+      "url": "/api/auth/reset-password"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 4
+[11:53:12.496] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 20,
+      "method": "POST",
+      "url": "/api/auth/reset-password/confirm"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 51
+[11:53:12.572] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 21,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 73
+[11:53:12.596] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 22,
+      "method": "POST",
+      "url": "/api/api-keys/191c2d87-1f5e-449d-a912-3d3803549242/regenerate"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 21
+[11:53:12.614] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 23,
+      "method": "POST",
+      "url": "/api/api-keys/191c2d87-1f5e-449d-a912-3d3803549242/revoke"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 5
+[11:53:12.626] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 24,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "MISSING_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:53:12.627] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 24,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:53:12.642] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 25,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/api-keys"
+[11:53:12.643] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 25,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:53:12.731] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 26,
+      "method": "POST",
+      "url": "/api/admin/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 71
+[11:53:12.769] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 27,
+      "method": "GET",
+      "url": "/api/admin/dashboard"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 27
+[11:53:12.780] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 28,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 5
+[11:53:12.795] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 29,
+      "method": "GET",
+      "url": "/api/admin/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 4
+[11:53:12.799] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 30,
+      "method": "GET",
+      "url": "/api/admin/logs"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 3
+[11:53:12.810] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 31,
+      "method": "GET",
+      "url": "/api/admin/plans"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:53:12.829] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 32,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 4
+[11:53:12.842] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 33,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+[11:53:12.842] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 33,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 1
+[11:53:12.860] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 34,
+      "method": "POST",
+      "url": "/api/admin/api-keys/191c2d87-1f5e-449d-a912-3d3803549242/revoke"
+    }
+    [35merrorCode[39m: "NOT_FOUND"
+    [35mpath[39m: "/api/admin/api-keys/191c2d87-1f5e-449d-a912-3d3803549242/revoke"
+[11:53:12.861] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 34,
+      "method": "POST",
+      "url": "/api/admin/api-keys/191c2d87-1f5e-449d-a912-3d3803549242/revoke"
+    }
+    [35mres[39m: {
+      "statusCode": 404
+    }
+    [35mresponseTime[39m: 3
+[11:53:12.877] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 35,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/admin/users"
+[11:53:12.878] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 35,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 2
+[11:53:55.720] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 36,
+      "method": "GET",
+      "url": "/api/healthz"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 1
+[11:53:55.793] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 37,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 66
+[11:53:55.809] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 38,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/auth/register"
+[11:53:55.810] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 38,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 2
+[11:53:55.879] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 39,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 54
+[11:53:55.947] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 40,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/auth/login"
+[11:53:55.948] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 40,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 56
+[11:53:55.962] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 41,
+      "method": "POST",
+      "url": "/api/auth/refresh"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 5
+[11:53:55.975] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 42,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 8
+[11:53:55.989] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 43,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 10
+[11:53:55.993] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 44,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/api-keys"
+[11:53:55.993] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 44,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 0
+[11:53:56.014] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 45,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 6
+[11:53:56.023] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 46,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 4
+[11:53:56.029] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 47,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "INVALID_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:53:56.030] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 47,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 3
+[11:53:56.084] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 48,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 42
+[11:53:56.110] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 49,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 15
+[11:53:56.119] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 50,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35merrorCode[39m: "UNSUPPORTED_FORMAT"
+    [35mpath[39m: "/api/v1/extract"
+[11:53:56.119] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 50,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 415
+    }
+    [35mresponseTime[39m: 6
+[11:53:56.128] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 51,
+      "method": "GET",
+      "url": "/api/user/usage"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 3
+[11:53:56.232] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 52,
+      "method": "POST",
+      "url": "/api/auth/change-password"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 90
+[11:53:56.286] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 53,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 45
+[11:53:56.290] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 54,
+      "method": "POST",
+      "url": "/api/auth/reset-password"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 3
+[11:53:56.340] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 55,
+      "method": "POST",
+      "url": "/api/auth/reset-password/confirm"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 49
+[11:53:56.391] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 56,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 48
+[11:53:56.421] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 57,
+      "method": "POST",
+      "url": "/api/api-keys/03c98ef2-193d-4fd9-97f4-bcc0b6694bba/regenerate"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 14
+[11:53:56.429] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 58,
+      "method": "POST",
+      "url": "/api/api-keys/03c98ef2-193d-4fd9-97f4-bcc0b6694bba/revoke"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 4
+[11:53:56.441] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 59,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "INVALID_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:53:56.442] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 59,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.459] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 60,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/api-keys"
+[11:53:56.459] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 60,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:53:56.523] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 61,
+      "method": "POST",
+      "url": "/api/admin/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 48
+[11:53:56.526] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 62,
+      "method": "GET",
+      "url": "/api/admin/dashboard"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.543] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 63,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.560] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 64,
+      "method": "GET",
+      "url": "/api/admin/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.563] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 65,
+      "method": "GET",
+      "url": "/api/admin/logs"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.578] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 66,
+      "method": "GET",
+      "url": "/api/admin/plans"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 3
+[11:53:56.594] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 67,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.609] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 68,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+[11:53:56.610] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 68,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 2
+[11:53:56.632] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 69,
+      "method": "POST",
+      "url": "/api/admin/api-keys/d8b1dadb-1e1a-4617-a2d0-202a5832df01/revoke"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 7
+[11:53:56.642] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 70,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/admin/users"
+[11:53:56.643] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 70,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 2
+[11:54:09.940] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 71,
+      "method": "GET",
+      "url": "/api/healthz"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.028] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 72,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 80
+[11:54:10.031] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 73,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/auth/register"
+[11:54:10.031] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 73,
+      "method": "POST",
+      "url": "/api/auth/register"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.087] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 74,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 46
+[11:54:10.137] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 75,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/auth/login"
+[11:54:10.137] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 75,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 45
+[11:54:10.145] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 76,
+      "method": "POST",
+      "url": "/api/auth/refresh"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 5
+[11:54:10.166] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 77,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 8
+[11:54:10.185] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 78,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 10
+[11:54:10.190] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 79,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/api-keys"
+[11:54:10.190] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 79,
+      "method": "POST",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.204] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 80,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:54:10.210] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 81,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.226] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 82,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "INVALID_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:54:10.226] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 82,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.250] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 83,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 9
+[11:54:10.265] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 84,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 8
+[11:54:10.283] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 85,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35merrorCode[39m: "UNSUPPORTED_FORMAT"
+    [35mpath[39m: "/api/v1/extract"
+[11:54:10.284] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 85,
+      "method": "POST",
+      "url": "/api/v1/extract"
+    }
+    [35mres[39m: {
+      "statusCode": 415
+    }
+    [35mresponseTime[39m: 6
+[11:54:10.286] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 86,
+      "method": "GET",
+      "url": "/api/user/usage"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.376] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 87,
+      "method": "POST",
+      "url": "/api/auth/change-password"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 84
+[11:54:10.442] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 88,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 49
+[11:54:10.448] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 89,
+      "method": "POST",
+      "url": "/api/auth/reset-password"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 3
+[11:54:10.504] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 90,
+      "method": "POST",
+      "url": "/api/auth/reset-password/confirm"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 46
+[11:54:10.562] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 91,
+      "method": "POST",
+      "url": "/api/auth/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 54
+[11:54:10.574] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 92,
+      "method": "POST",
+      "url": "/api/api-keys/29626228-3479-426b-8c48-28189104ebfd/regenerate"
+    }
+    [35mres[39m: {
+      "statusCode": 201
+    }
+    [35mresponseTime[39m: 11
+[11:54:10.595] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 93,
+      "method": "POST",
+      "url": "/api/api-keys/29626228-3479-426b-8c48-28189104ebfd/revoke"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 4
+[11:54:10.596] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 94,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35merrorCode[39m: "INVALID_API_KEY"
+    [35mpath[39m: "/api/v1/key-check"
+[11:54:10.597] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 94,
+      "method": "GET",
+      "url": "/api/v1/key-check"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.608] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 95,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/api-keys"
+[11:54:10.609] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 95,
+      "method": "GET",
+      "url": "/api/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.671] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 96,
+      "method": "POST",
+      "url": "/api/admin/login"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 46
+[11:54:10.677] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 97,
+      "method": "GET",
+      "url": "/api/admin/dashboard"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:54:10.693] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 98,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:54:10.710] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 99,
+      "method": "GET",
+      "url": "/api/admin/api-keys"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:54:10.727] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 100,
+      "method": "GET",
+      "url": "/api/admin/logs"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:54:10.743] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 101,
+      "method": "GET",
+      "url": "/api/admin/plans"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+[11:54:10.747] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 102,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 3
+[11:54:10.759] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 103,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35merrorCode[39m: "VALIDATION_ERROR"
+    [35mpath[39m: "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+[11:54:10.759] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 103,
+      "method": "PUT",
+      "url": "/api/admin/plans/14cea3f8-9626-11f1-a248-88aeddbda0db"
+    }
+    [35mres[39m: {
+      "statusCode": 422
+    }
+    [35mresponseTime[39m: 1
+[11:54:10.783] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 104,
+      "method": "POST",
+      "url": "/api/admin/api-keys/906263ff-dead-4a1c-b481-eeeb5cd0665f/revoke"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 7
+[11:54:10.792] [33mWARN[39m (5360): [36mRequest rejected[39m
+    [35mreq[39m: {
+      "id": 105,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35merrorCode[39m: "UNAUTHORIZED"
+    [35mpath[39m: "/api/admin/users"
+[11:54:10.792] [32mINFO[39m (5360): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 105,
+      "method": "GET",
+      "url": "/api/admin/users"
+    }
+    [35mres[39m: {
+      "statusCode": 401
+    }
+    [35mresponseTime[39m: 1

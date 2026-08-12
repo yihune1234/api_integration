@@ -85,3 +85,10 @@ export function issueResetToken(userId) {
     env.resetTokenTtlSeconds,
   );
 }
+
+export function issueAdminAccessToken(adminId, role) {
+  return signToken(
+    { sub: adminId, type: "access", role },
+    env.accessTokenTtlSeconds,
+  );
+}

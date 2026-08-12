@@ -12,4 +12,4 @@ CREATE TABLE IF NOT EXISTS api_keys (
   CONSTRAINT api_keys_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE INDEX IF NOT EXISTS idx_api_keys_user_id ON api_keys(user_id);
+CREATE INDEX idx_api_keys_user_id ON api_keys(user_id);

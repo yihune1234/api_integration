@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS activity_logs (
   CONSTRAINT activity_logs_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_activity_logs_user_id ON activity_logs(user_id);
-CREATE INDEX IF NOT EXISTS idx_activity_logs_timestamp ON activity_logs(timestamp);
+CREATE INDEX idx_activity_logs_user_id ON activity_logs(user_id);
+CREATE INDEX idx_activity_logs_timestamp ON activity_logs(timestamp);
