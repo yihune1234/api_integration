@@ -1,4 +1,4 @@
-﻿import { apiFetch } from "./client";
+import { apiFetch } from "./client";
 
 export interface ApiKeyMetadata {
   id: string;
@@ -24,7 +24,10 @@ export interface RevokeApiKeyResponse {
 }
 
 export async function createApiKey(plan = "free"): Promise<CreateApiKeyResponse> {
-  return apiFetch<CreateApiKeyResponse>("/api-keys", { method: "POST", body: { plan } });
+  return apiFetch<CreateApiKeyResponse>("/api-keys", {
+    method: "POST",
+    body: { plan },
+  });
 }
 
 export async function listApiKeys(): Promise<ListApiKeysResponse> {
@@ -32,9 +35,13 @@ export async function listApiKeys(): Promise<ListApiKeysResponse> {
 }
 
 export async function revokeApiKey(id: string): Promise<RevokeApiKeyResponse> {
-  return apiFetch<RevokeApiKeyResponse>(`/api-keys/${id}/revoke`, { method: "POST" });
+  return apiFetch<RevokeApiKeyResponse>(`/api-keys/${id}/revoke`, {
+    method: "POST",
+  });
 }
 
 export async function regenerateApiKey(id: string): Promise<CreateApiKeyResponse> {
-  return apiFetch<CreateApiKeyResponse>(`/api-keys/${id}/regenerate`, { method: "POST" });
+  return apiFetch<CreateApiKeyResponse>(`/api-keys/${id}/regenerate`, {
+    method: "POST",
+  });
 }

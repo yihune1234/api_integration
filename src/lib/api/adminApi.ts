@@ -1,4 +1,4 @@
-﻿import { apiFetch } from "./client";
+import { apiFetch } from "./client";
 
 export interface AdminUser {
   id: string;

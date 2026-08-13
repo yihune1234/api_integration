@@ -1,6 +1,4 @@
-﻿import { apiFetch, setTokens, clearTokens, setSession, getSession, getAccessToken, ApiError } from "./client";
-
-// â”€â”€ Types (match the confirmed backend contract) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+import { apiFetch, setTokens, clearTokens, setSession, getSession, getAccessToken, ApiError } from "./client";
 
 export interface User {
   id: string;
@@ -49,8 +47,6 @@ export interface UsageResponse {
     successful: number;
   };
 }
-
-// â”€â”€ Auth API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function register(body: {
   organizationName: string;
