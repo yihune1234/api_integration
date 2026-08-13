@@ -1,4 +1,5 @@
 import { listUsageByUserId } from "../../db/models/api-usage.js";
+import { findUserById } from "../../db/models/users.js";
 
 /**
  * GET /user/usage
@@ -51,4 +52,31 @@ export async function getUserUsageHandler(request, response) {
   }
 
   response.json({ status: "success", usage: stats });
+}
+
+/**
+ * GET /user/profile
+ *
+ * Returns the authenticated organization's profile.
+ */
+export async function getUserProfileHandler(request, response) {
+  const result = await findUserById(request.auth.userId);
+  const user = result.rows[0];
+  if (!user) {
+    const error = new Error("User account was not found.");
+    error.code = "NOT_FOUND";
+    error.status = 404;
+    throw error;
+  }
+
+  response.json({
+    status: "success",
+    user: {
+      id: user.id,
+      organizationName: user.organization_name,
+      contactEmail: user.contact_email,
+      status: user.status,
+      createdAt: user.created_at,
+    },
+  });
 }

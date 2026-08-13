@@ -17,6 +17,7 @@ export const env = {
   port,
   nodeEnv: process.env.NODE_ENV ?? "development",
   logLevel: process.env.LOG_LEVEL ?? "info",
+  corsOrigins: process.env.CORS_ORIGINS,
   accessTokenTtlSeconds: 15 * 60,
   refreshTokenTtlSeconds: 7 * 24 * 60 * 60,
   resetTokenTtlSeconds: 15 * 60,

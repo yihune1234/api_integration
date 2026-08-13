@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS api_keys (
   id CHAR(36) PRIMARY KEY,
   user_id CHAR(36) NOT NULL,
   key_hash VARCHAR(255) NOT NULL UNIQUE,
-  key_prefix VARCHAR(32) NOT NULL,
+  key_prefix VARCHAR(12) NOT NULL,  -- short, non-secret prefix shown in UI (e.g. "eb_live_9f2a")
   status VARCHAR(20) NOT NULL DEFAULT 'active',
   plan VARCHAR(20) NOT NULL DEFAULT 'free',
   expires_at TIMESTAMP NULL,

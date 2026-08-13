@@ -124,15 +124,39 @@ export function listAllActivityLogs({
   );
 }
 
+export function findPlanMaxRequests(planName) {
+  return query(
+    "SELECT id, name, max_requests FROM plans WHERE name = ?",
+    [planName],
+  );
+}
+
 export function listAllPlans() {
   return query(
     "SELECT id, name, max_requests FROM plans ORDER BY max_requests ASC",
   );
 }
 
-export function updatePlanLimits(planId, maxRequests) {
-  return query("UPDATE plans SET max_requests = ? WHERE id = ?", [
+export async function updatePlanLimits(planId, maxRequests) {
+  const planResult = await query("SELECT name FROM plans WHERE id = ?", [planId]);
+  const plan = planResult.rows[0];
+  if (!plan) return planResult;
+
+  await query("UPDATE plans SET max_requests = ? WHERE id = ?", [
     maxRequests,
     planId,
   ]);
+
+  // Propagate the new limit to existing rate_limits rows for keys on this plan
+  // so the change is enforced immediately (matches the product contract:
+  // "Changing a plan limit affects new extraction requests immediately").
+  await query(
+    `UPDATE rate_limits rl
+     JOIN api_keys ak ON ak.id = rl.api_key_id
+     SET rl.max_requests = ?
+     WHERE ak.plan = ? AND rl.max_requests != ?`,
+    [maxRequests, plan.name, maxRequests],
+  );
+
+  return query("SELECT id, name, max_requests FROM plans WHERE id = ?", [planId]);
 }

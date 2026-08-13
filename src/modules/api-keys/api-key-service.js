@@ -6,7 +6,7 @@ import {
   revokeApiKeyByIdForUser,
 } from "../../db/models/api-keys.js";
 import { createRateLimit } from "../../db/models/rate-limits.js";
-import { maxRequestsForPlan, nextDailyReset } from "../../config/plans.js";
+import { findPlanMaxRequests } from "../../db/models/admin-queries.js";
 import { logActivity } from "../logging/activity-logger.js";
 
 export class ApiKeyError extends Error {
@@ -26,7 +26,7 @@ function keyHash(value) {
 }
 
 function keyPrefix(value) {
-  return value.slice(0, 16);
+  return value.slice(0, 12);
 }
 
 function publicKey(row) {
@@ -53,10 +53,16 @@ async function generateForUser(userId, plan, request, action) {
     plan,
   });
   const row = result.rows[0];
+
+  // Resolve the plan's current daily limit from the `plans` table (single
+  // source of truth — editable from the admin Plans & limits page). Fall back
+  // to the static config only if the plan row is missing.
+  const planRow = (await findPlanMaxRequests(plan)).rows[0];
+  const maxRequests = planRow ? planRow.max_requests : 0;
+
   await createRateLimit({
     apiKeyId: row.id,
-    maxRequests: maxRequestsForPlan(plan),
-    resetAt: nextDailyReset(),
+    maxRequests,
   });
   await logActivity({ userId, action, request });
 

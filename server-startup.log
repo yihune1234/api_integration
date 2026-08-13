@@ -1,4 +1,4 @@
-[14:55:03.937] [31mERROR[39m (8408): [36mUnable to connect to the database. Confirm DATABASE_URL and that MySQL is running.[39m
+[14:56:27.482] [31mERROR[39m (11764): [36mUnable to connect to the database. Confirm DATABASE_URL and that MySQL is running.[39m
     [35mdatabaseUrl[39m: "mysql://***@127.0.0.1:3306/api_server"
     err: {
       "type": "Error",
