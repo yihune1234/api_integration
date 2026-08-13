@@ -1,0 +1,31 @@
+@media (max-width: 1060px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid, .bottom-grid { grid-template-columns: 1fr; }
+  .docs-layout { gap: 35px; grid-template-columns: 175px minmax(0, 1fr); }
+  .login-decoration { padding-left: 4vw; padding-right: 4vw; }
+}
+@media (max-width: 760px) {
+  .sidebar { width: 270px; transform: translateX(-105%); transition: transform .25s ease; box-shadow: 18px 0 35px rgba(12,43,48,.2); }.sidebar-open { transform: translateX(0); }
+  .mobile-backdrop { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(15,42,48,.38); border: 0; }
+  .mobile-close, .mobile-menu { display: grid; place-items: center; border: 0; background: none; cursor: pointer; color: inherit; }
+  .mobile-close { color: rgba(245,238,224,.65); }.mobile-menu { margin-right: 11px; color: var(--teal); }
+  .main-shell { margin-left: 0; width: 100%; }.topbar { padding: 0 20px; }.status-indicator { display: none; }
+  .page-content { padding: 31px 19px 48px; }.page-header { align-items: start; flex-direction: column; margin-bottom: 24px; }.page-header-action { align-self: stretch; }.page-header-action > .eb-button, .page-header-action > a { width: 100%; }
+  .stats-grid, .stats-grid-three { grid-template-columns: 1fr 1fr; gap: 10px; }.stat-card { min-height: 145px; padding: 14px; }.stat-icon { margin-bottom: 14px; }
+  .dashboard-grid, .bottom-grid, .two-column, .playground-layout, .profile-layout, .plan-grid { grid-template-columns: 1fr; }.chart-card, .status-card, .recent-card, .quick-card, .activity-card, .usage-chart-card, .request-card, .response-card, .profile-layout > .eb-card { padding: 18px; }
+  .two-column { gap: 11px; }.mini-chart { gap: 7px; }.large-columns { gap: 7px; }.stacked-bar { width: 65%; }
+  .table-card { padding: 17px; }.table-card-header { align-items: start; flex-direction: column; }.toolbar { width: 100%; }.toolbar .search-field { flex: 1; }.search-field { min-width: 0; }
+  .docs-layout { display: block; }.docs-nav { position: static; margin-bottom: 37px; padding-bottom: 18px; border-bottom: 1px solid hsl(var(--border)); }.docs-help { display: none; }.doc-section h2 { font-size: 27px; }.doc-section { margin-bottom: 45px; }
+  .form-grid { grid-template-columns: 1fr; }.profile-cover h2 { font-size: 18px; }.notice-card { align-items: start; flex-wrap: wrap; }.notice-card .ml-auto { margin-left: 43px; }
+  .integration-card-header { flex-direction: column; }.integration-card-header .text-link { align-self: flex-start; }.integration-steps { grid-template-columns: 1fr; }.integration-step, .integration-step + .integration-step { min-height: auto; padding: 14px 0; border-right: 0; border-bottom: 1px solid #e4e6dc; }.integration-step:last-child { border-bottom: 0; }.integration-step .eb-button, .integration-step .step-link { align-self: flex-start; margin-top: 1px; }.connection-flow { align-items: flex-start; flex-direction: column; }.connection-flow > svg { transform: rotate(90deg); margin-left: 5px; }.doc-steps, .auth-detail-grid, .request-contract { grid-template-columns: 1fr 1fr; }
+  .attention-grid { grid-template-columns: 1fr; }.attention-item { min-height: 64px; }.plan-card { min-height: auto; }
+  .login-page { display: block; }.login-decoration { display: none; }.login-panel { min-height: 100dvh; padding: 30px 24px; place-items: start center; }.login-panel-inner { padding-top: 12px; }.login-mobile-brand { display: block; margin-bottom: 61px; }
+  .login-mobile-brand .brand-name { font-size: 17px; }.login-mobile-brand .brand-subtitle { color: var(--ink-soft); }
+  .center-state-page h1 { font-size: 29px; }.center-state-brand { top: 22px; left: 22px; }
+}
+@media (max-width: 430px) {
+  .stats-grid, .stats-grid-three { grid-template-columns: 1fr; }.stat-card { min-height: 128px; }.stat-icon { margin-bottom: 8px; }.stat-value { font-size: 23px; }
+  .topbar-crumb { font-size: 10px; }.topbar { min-height: 58px; }.page-header h1 { font-size: 31px; }
+  .chart-legend { flex-direction: column; gap: 5px; }.form-actions { align-items: start; flex-direction: column; }.login-mobile-brand { margin-bottom: 44px; }
+  .login-panel h1 { font-size: 39px; }.error-list div { align-items: start; flex-direction: column; gap: 5px; }.error-list code { width: auto; }.doc-steps, .auth-detail-grid, .request-contract { grid-template-columns: 1fr; }.integration-card { padding: 17px; }.integration-card-header h2 { font-size: 19px; }
+}
