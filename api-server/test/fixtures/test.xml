@@ -1,0 +1,4 @@
+<root>
+  <record><name>Alice</name><email>alice@example.com</email><age>30</age></record>
+  <record><name>Bob</name><email>bob@example.com</email><age>25</age></record>
+</root>

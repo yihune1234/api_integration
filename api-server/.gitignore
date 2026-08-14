@@ -1,0 +1,7 @@
+dist/
+.pnpm-store/
+.tsbuildinfo
+node_modules/
+.env
+*.log
+.git_disabled/
