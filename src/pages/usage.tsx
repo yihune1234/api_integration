@@ -40,9 +40,10 @@ export function UsagePage() {
         }
       />
       {error && <div className="field-error" data-testid="status-usage-error">{error}</div>}
-      <div className="stats-grid stats-grid-three">
+      <div className="stats-grid">
         <StatCard label="All-time requests" value={total.toLocaleString()} detail={<span>Since your workspace began</span>} icon={Database} />
-        <StatCard label="Requests today" value={(usage?.daily ?? 0).toLocaleString()} detail={<span>Daily count</span>} icon={BarChart3} accent="gold" />
+        <StatCard label="Requests used today" value={(usage?.quota.used ?? 0).toLocaleString()} detail={<span>of {(usage?.quota.limit ?? 0).toLocaleString()} available</span>} icon={BarChart3} accent="gold" />
+        <StatCard label="Requests left today" value={(usage?.quota.remaining ?? 0).toLocaleString()} detail={<span>Resets daily</span>} icon={Clock3} accent="blue" />
         <StatCard label="Failed requests" value={failed.toLocaleString()} detail={<span>{successRate}% success rate</span>} icon={AlertTriangle} accent="red" />
       </div>
       <Card className="usage-chart-card">
@@ -95,6 +96,9 @@ export function UsagePage() {
                 <tr><td className="strong">Total requests</td><td className="mono">{total.toLocaleString()}</td></tr>
                 <tr><td className="strong">Today</td><td className="mono">{(usage?.daily ?? 0).toLocaleString()}</td></tr>
                 <tr><td className="strong">This month</td><td className="mono">{(usage?.monthly ?? 0).toLocaleString()}</td></tr>
+                <tr><td className="strong">Daily limit</td><td className="mono">{(usage?.quota.limit ?? 0).toLocaleString()}</td></tr>
+                <tr><td className="strong">Used today</td><td className="mono">{(usage?.quota.used ?? 0).toLocaleString()}</td></tr>
+                <tr><td className="strong">Remaining today</td><td className="mono table-good">{(usage?.quota.remaining ?? 0).toLocaleString()}</td></tr>
                 <tr><td className="strong">Successful</td><td className="mono table-good">{successful.toLocaleString()}</td></tr>
                 <tr><td className="strong">Failed</td><td className="mono table-bad">{failed.toLocaleString()}</td></tr>
               </tbody>

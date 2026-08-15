@@ -20,8 +20,10 @@ import {
   listApiKeys,
   revokeApiKey,
   regenerateApiKey,
+  type ApiKeyPlan,
   type ApiKeyMetadata,
 } from "@/lib/api/apiKeysApi";
+import { getPremiumStatus } from "@/lib/api/premiumApi";
 import { Button, Badge, Card } from "@/components/app/basic";
 import { PageHeader } from "@/components/app/headers";
 import { Shell } from "@/components/app/shell";
@@ -31,15 +33,19 @@ export function ApiKeysPage() {
   const [keys, setKeys] = useState<ApiKeyMetadata[]>([]);
   const [showCreate, setShowCreate] = useState(false);
   const [rawKey, setRawKey] = useState<string | null>(null);
-  const [plan, setPlan] = useState("free");
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedPlan, setSelectedPlan] = useState<ApiKeyPlan>("free");
+  const [approvedPlans, setApprovedPlans] = useState<ApiKeyPlan[]>([]);
 
   const load = async () => {
     try {
-      const data = await listApiKeys();
+      const [data, premium] = await Promise.all([listApiKeys(), getPremiumStatus()]);
       setKeys(data.apiKeys);
+      setApprovedPlans(premium.requests
+        .filter((request) => request.approval_status === "approved")
+        .map((request) => request.requested_plan));
       setError("");
     } catch (err: any) {
       setError(err?.message ?? "Failed to load API keys.");
@@ -53,11 +59,12 @@ export function ApiKeysPage() {
   const handleCreate = async () => {
     setError("");
     try {
-      const data = await createApiKey(plan);
+      const data = await createApiKey(selectedPlan);
       setKeys((prev) => [data.apiKey, ...prev]);
       setRawKey(data.key);
       setCopied(false);
       setShowCreate(false);
+      setSelectedPlan("free");
     } catch (err: any) {
       setError(err?.message ?? "Failed to create API key.");
     }
@@ -97,7 +104,7 @@ export function ApiKeysPage() {
         title="API keys"
         description="Create a credential, add it to your system securely, and use it to send extraction requests."
         action={
-          <Button onClick={() => setShowCreate(true)} data-testid="button-create-api-key">
+          <Button onClick={() => { setSelectedPlan("free"); setShowCreate(true); }} data-testid="button-create-api-key">
             <Plus size={16} /> Create API key
           </Button>
         }
@@ -190,13 +197,15 @@ export function ApiKeysPage() {
             <div className="modal-icon"><KeyRound size={20} /></div>
             <div className="section-kicker">NEW CREDENTIAL</div>
             <h2 id="create-key-title">Create an API key</h2>
-            <p className="modal-description">Choose a plan for this credential. The raw key will be displayed once after creation.</p>
-            <label className="field-label" htmlFor="key-plan">Plan</label>
-            <select id="key-plan" className="eb-input" value={plan} onChange={(event) => setPlan(event.target.value)} data-testid="select-key-plan">
-              <option value="free">Free · 100 requests/day</option>
-              <option value="business">Business · 10,000 requests/day</option>
-              <option value="enterprise">Enterprise · Custom limit</option>
-            </select>
+            <p className="modal-description">Choose Free, or a plan that an administrator has approved for this workspace.</p>
+            <div className="premium-options" role="radiogroup" aria-label="API key plan">
+              {(["free", "business", "enterprise"] as ApiKeyPlan[]).map((plan) => {
+                const available = plan === "free" || approvedPlans.includes(plan);
+                return <button key={plan} type="button" className={`premium-option ${selectedPlan === plan ? "premium-option-active" : ""}`} onClick={() => setSelectedPlan(plan)} disabled={!available} aria-pressed={selectedPlan === plan}>
+                  <span><strong>{plan}</strong><small>{plan === "free" ? "Available immediately" : available ? "Approved for this workspace" : "Requires admin approval"}</small></span>
+                </button>;
+              })}
+            </div>
             <div className="modal-actions">
               <Button variant="secondary" onClick={() => setShowCreate(false)} data-testid="button-cancel-create-key">Cancel</Button>
               <Button onClick={() => void handleCreate()} data-testid="button-confirm-create-key"><Plus size={16} /> Create key</Button>

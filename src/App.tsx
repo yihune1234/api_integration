@@ -10,14 +10,19 @@ import { AdminApiKeysPage } from "@/pages/admin-api-keys";
 import { AdminDashboardPage } from "@/pages/admin-dashboard";
 import { AdminLogsPage } from "@/pages/admin-logs";
 import { AdminPlansPage } from "@/pages/admin-plans";
+import { AdminPremiumRequestsPage } from "@/pages/admin-premium-requests";
 import { AdminUsersPage } from "@/pages/admin-users";
 import { ApiKeysPage } from "@/pages/api-keys";
 import { DashboardPage } from "@/pages/dashboard";
 import { DocsPage } from "@/pages/docs/docs";
 import { LoginPage } from "@/pages/login";
+import { RegisterPage } from "@/pages/register";
+import { ForgotPasswordPage } from "@/pages/forgot-password";
+import { ResetPasswordPage } from "@/pages/reset-password";
 import { NotFound } from "@/pages/not-found";
 import { PlaygroundPage } from "@/pages/playground";
 import { ProfilePage } from "@/pages/profile";
+import { PremiumPage } from "@/pages/premium";
 import { UnauthorizedPage } from "@/pages/unauthorized";
 import { UsagePage } from "@/pages/usage";
 import {
@@ -46,6 +51,11 @@ function AppRouter() {
   if (location === "/login") {
     return <LoginPage onLogin={(s) => { setSession(s); setLocation(s.role === "admin" ? "/admin/dashboard" : "/app/dashboard"); }} />;
   }
+  if (location === "/register") {
+    return <RegisterPage onRegister={(s) => { setSession(s); setLocation("/app/dashboard"); }} />;
+  }
+  if (location === "/forgot-password") return <ForgotPasswordPage />;
+  if (location === "/reset-password") return <ResetPasswordPage />;
   if (location === "/") return <MarketingHome />;
   if (location === "/features") return <MarketingFeatures />;
   if (location === "/pricing") return <MarketingPricing />;
@@ -66,11 +76,13 @@ function AppRouter() {
   if (location === "/app/docs") page = <DocsPage />;
   if (location === "/app/playground") page = <PlaygroundPage />;
   if (location === "/app/profile") page = <ProfilePage />;
+  if (location === "/app/premium") page = <PremiumPage />;
   if (location === "/admin/dashboard") page = <AdminDashboardPage />;
   if (location === "/admin/users") page = <AdminUsersPage />;
   if (location === "/admin/api-keys") page = <AdminApiKeysPage />;
   if (location === "/admin/logs") page = <AdminLogsPage />;
   if (location === "/admin/plans") page = <AdminPlansPage />;
+  if (location === "/admin/premium-requests") page = <AdminPremiumRequestsPage />;
 
   return page;
 }

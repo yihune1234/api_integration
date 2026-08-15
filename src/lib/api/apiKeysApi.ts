@@ -1,10 +1,12 @@
 import { apiFetch } from "./client";
 
+export type ApiKeyPlan = "free" | "business" | "enterprise";
+
 export interface ApiKeyMetadata {
   id: string;
   keyPrefix: string;
   status: string;
-  plan: string;
+  plan: ApiKeyPlan;
   expiresAt: string | null;
   createdAt: string;
 }
@@ -23,7 +25,7 @@ export interface RevokeApiKeyResponse {
   apiKey: ApiKeyMetadata;
 }
 
-export async function createApiKey(plan = "free"): Promise<CreateApiKeyResponse> {
+export async function createApiKey(plan: ApiKeyPlan = "free"): Promise<CreateApiKeyResponse> {
   return apiFetch<CreateApiKeyResponse>("/api-keys", {
     method: "POST",
     body: { plan },

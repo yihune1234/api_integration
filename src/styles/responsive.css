@@ -12,7 +12,7 @@
   .main-shell { margin-left: 0; width: 100%; }.topbar { padding: 0 20px; }.status-indicator { display: none; }
   .page-content { padding: 31px 19px 48px; }.page-header { align-items: start; flex-direction: column; margin-bottom: 24px; }.page-header-action { align-self: stretch; }.page-header-action > .eb-button, .page-header-action > a { width: 100%; }
   .stats-grid, .stats-grid-three { grid-template-columns: 1fr 1fr; gap: 10px; }.stat-card { min-height: 145px; padding: 14px; }.stat-icon { margin-bottom: 14px; }
-  .dashboard-grid, .bottom-grid, .two-column, .playground-layout, .profile-layout, .plan-grid { grid-template-columns: 1fr; }.chart-card, .status-card, .recent-card, .quick-card, .activity-card, .usage-chart-card, .request-card, .response-card, .profile-layout > .eb-card { padding: 18px; }
+  .dashboard-grid, .bottom-grid, .two-column, .playground-layout, .profile-layout, .plan-grid, .premium-layout { grid-template-columns: 1fr; }.chart-card, .status-card, .recent-card, .quick-card, .activity-card, .usage-chart-card, .request-card, .response-card, .profile-layout > .eb-card { padding: 18px; }
   .two-column { gap: 11px; }.mini-chart { gap: 7px; }.large-columns { gap: 7px; }.stacked-bar { width: 65%; }
   .table-card { padding: 17px; }.table-card-header { align-items: start; flex-direction: column; }.toolbar { width: 100%; }.toolbar .search-field { flex: 1; }.search-field { min-width: 0; }
   .docs-layout { display: block; }.docs-nav { position: static; margin-bottom: 37px; padding-bottom: 18px; border-bottom: 1px solid hsl(var(--border)); }.docs-help { display: none; }.doc-section h2 { font-size: 27px; }.doc-section { margin-bottom: 45px; }

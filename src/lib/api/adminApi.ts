@@ -5,6 +5,7 @@ export interface AdminUser {
   organization_name: string;
   contact_email: string;
   status: string;
+  plan: "free" | "business" | "enterprise";
   created_at: string;
 }
 
@@ -40,7 +41,13 @@ export interface AdminPlan {
 export interface AdminDashboardStats {
   users: { total: number; active: number };
   apiKeys: { total: number; active: number };
-  requests: { total: number; today: number; failed: number };
+  requests: {
+    total: number;
+    today: number;
+    monthly: number;
+    failed: number;
+    quota: { limit: number; used: number; remaining: number };
+  };
 }
 
 export interface AdminUsersResponse {

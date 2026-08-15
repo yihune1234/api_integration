@@ -68,8 +68,8 @@ export function DashboardPage() {
       <div className="stats-grid">
         <StatCard
           label="Requests this month"
-          value={total.toLocaleString()}
-          detail={<span>Lifetime request count</span>}
+          value={(usage?.monthly ?? 0).toLocaleString()}
+          detail={<span>{total.toLocaleString()} all-time requests</span>}
           icon={Activity}
         />
         <StatCard
@@ -87,9 +87,9 @@ export function DashboardPage() {
           accent="blue"
         />
         <StatCard
-          label="Requests today"
-          value={(usage?.daily ?? 0).toLocaleString()}
-          detail={<span>Daily request count</span>}
+          label="Requests left today"
+          value={(usage?.quota.remaining ?? 0).toLocaleString()}
+          detail={<span>{(usage?.quota.used ?? 0).toLocaleString()} of {(usage?.quota.limit ?? 0).toLocaleString()} used</span>}
           icon={CreditCard}
           accent="green"
         />

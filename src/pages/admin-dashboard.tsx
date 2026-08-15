@@ -62,9 +62,9 @@ export function AdminDashboardPage() {
           accent="gold"
         />
         <StatCard
-          label="Requests today"
-          value={(stats?.requests.today ?? 0).toLocaleString()}
-          detail={<span>{failedRate}% failed</span>}
+          label="Requests this month"
+          value={(stats?.requests.monthly ?? 0).toLocaleString()}
+          detail={<span>{(stats?.requests.total ?? 0).toLocaleString()} all-time</span>}
           icon={Activity}
           accent="blue"
         />
@@ -86,10 +86,10 @@ export function AdminDashboardPage() {
             <Badge tone="success"><span className="status-dot" /> Live</Badge>
           </div>
           <div className="admin-big-number">
-            {(stats?.requests.today ?? 0).toLocaleString()} <span>requests today</span>
+            {(stats?.requests.quota.remaining ?? 0).toLocaleString()} <span>requests left today</span>
           </div>
           <div className="admin-big-number-sub">
-            {(stats?.requests.total ?? 0).toLocaleString()} all-time
+            {(stats?.requests.quota.used ?? 0).toLocaleString()} of {(stats?.requests.quota.limit ?? 0).toLocaleString()} used today
           </div>
         </Card>
         <Card className="status-card">
