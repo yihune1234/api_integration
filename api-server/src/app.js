@@ -27,20 +27,10 @@ app.use(
     },
   }),
 );
-const allowedOrigins = (env.corsOrigins ?? "http://localhost:5173")
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
 app.use(
   cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-        return;
-      }
-      callback(new Error(`Origin ${origin} is not allowed by CORS.`));
-    },
-    credentials: false, // refresh tokens travel in JSON body, not cookies
+    origin: true,
+    credentials: false,
   }),
 );
 app.use(express.json());
