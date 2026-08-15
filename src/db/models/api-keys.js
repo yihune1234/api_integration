@@ -52,3 +52,15 @@ export async function revokeApiKeyByIdForUser(id, userId) {
     [id, userId],
   );
 }
+
+/**
+ * Integration point for the premium module: apply a plan change to all of a
+ * user's active API keys. Used when a premium request is approved.
+ */
+export function updateApiKeyPlan({ userId, plan }) {
+  return query(
+    `UPDATE api_keys SET plan = ?
+     WHERE user_id = ? AND status = 'active'`,
+    [plan, userId],
+  );
+}

@@ -22,7 +22,7 @@ export class AuthError extends Error {
 }
 
 function normalizeEmail(email) {
-  return email.trim().toLowerCase();
+  return requiredString(email, "contactEmail").toLowerCase();
 }
 
 function requiredString(value, field) {
@@ -36,11 +36,27 @@ function requiredString(value, field) {
   return value.trim();
 }
 
+function validateEmail(value) {
+  const email = normalizeEmail(value);
+  if (email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new AuthError("VALIDATION_ERROR", "contactEmail must be valid.", 422);
+  }
+  return email;
+}
+
+function validateOrganizationName(value) {
+  const name = requiredString(value, "organizationName");
+  if (name.length > 255) {
+    throw new AuthError("VALIDATION_ERROR", "organizationName must be 255 characters or fewer.", 422);
+  }
+  return name;
+}
+
 function validatePassword(password, field = "password") {
-  if (typeof password !== "string" || password.length < 8) {
+  if (typeof password !== "string" || password.length < 8 || password.length > 128) {
     throw new AuthError(
       "VALIDATION_ERROR",
-      `${field} must be at least 8 characters.`,
+      `${field} must be between 8 and 128 characters.`,
       422,
     );
   }
@@ -66,13 +82,9 @@ function tokensFor(userId) {
 }
 
 export async function register(body, request) {
-  const organizationName = requiredString(body.organizationName, "organizationName");
-  const contactEmail = normalizeEmail(requiredString(body.contactEmail, "contactEmail"));
+  const organizationName = validateOrganizationName(body.organizationName);
+  const contactEmail = validateEmail(body.contactEmail);
   const password = validatePassword(body.password);
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
-    throw new AuthError("VALIDATION_ERROR", "contactEmail must be valid.", 422);
-  }
 
   const existing = await getUserByEmail(contactEmail);
   if (existing) {
@@ -103,7 +115,7 @@ export async function register(body, request) {
 }
 
 export async function login(body, request) {
-  const contactEmail = normalizeEmail(requiredString(body.contactEmail, "contactEmail"));
+  const contactEmail = validateEmail(body.contactEmail);
   const password = validatePassword(body.password);
   const user = await getUserByEmail(contactEmail);
 
@@ -160,7 +172,7 @@ export async function changePassword(userId, body, request) {
 }
 
 export async function requestPasswordReset(body, request) {
-  const contactEmail = normalizeEmail(requiredString(body.contactEmail, "contactEmail"));
+  const contactEmail = validateEmail(body.contactEmail);
   const user = await getUserByEmail(contactEmail);
   const response = {
     message: "If an account exists for that email, reset instructions have been issued.",

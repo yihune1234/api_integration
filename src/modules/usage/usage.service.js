@@ -1,5 +1,12 @@
 import { upsertDailyUsage } from "../../db/models/api-usage.js";
 
+function localDateKey(value = new Date()) {
+  const date = value instanceof Date ? value : new Date(value);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${date.getFullYear()}-${month}-${day}`;
+}
+
 /**
  * Record usage for an extraction request (success or failure).
  *
@@ -15,7 +22,7 @@ export async function recordExtractionUsage({
   processingTimeMs,
   responseStatus,
 }) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDateKey();
   try {
     await upsertDailyUsage({
       userId,

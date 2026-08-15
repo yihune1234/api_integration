@@ -4,6 +4,7 @@ import {
   countApiKeys,
   countRequestsFailed,
   countRequestsToday,
+  countRequestsThisMonth,
   countRequestsTotal,
   countUsers,
   forceRevokeApiKey,
@@ -13,6 +14,7 @@ import {
   listAllUsers,
   updatePlanLimits,
 } from "../../db/models/admin-queries.js";
+import { getPlatformRateLimitSummary } from "../../db/models/rate-limits.js";
 import { findAdminByEmail } from "../../db/models/admins.js";
 import { createAdmin } from "../../db/models/admins.js";
 import { hashPassword, verifyPassword } from "../auth/password-service.js";
@@ -99,7 +101,9 @@ export async function dashboardStats() {
     activeApiKeys,
     totalRequests,
     todayRequests,
+    monthlyRequests,
     failedRequests,
+    rateLimitSummary,
   ] = await Promise.all([
     countUsers(),
     countActiveUsers(),
@@ -107,10 +111,15 @@ export async function dashboardStats() {
     countActiveApiKeys(),
     countRequestsTotal(),
     countRequestsToday(),
+    countRequestsThisMonth(),
     countRequestsFailed(),
+    getPlatformRateLimitSummary(),
   ]);
 
   const num = (r) => Number(r.rows[0]?.total ?? 0);
+  const quota = rateLimitSummary.rows[0] ?? {};
+  const limit = Number(quota.max_requests ?? 0);
+  const remaining = Number(quota.remaining_requests ?? 0);
 
   return {
     users: { total: num(totalUsers), active: num(activeUsers) },
@@ -118,7 +127,9 @@ export async function dashboardStats() {
     requests: {
       total: num(totalRequests),
       today: num(todayRequests),
+      monthly: num(monthlyRequests),
       failed: num(failedRequests),
+      quota: { limit, used: Math.max(0, limit - remaining), remaining },
     },
   };
 }

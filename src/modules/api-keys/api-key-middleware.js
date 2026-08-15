@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { findApiKeyByHash } from "../../db/models/api-keys.js";
+import { findApprovedPremiumRequestByUserIdAndPlan } from "../../db/models/premiumRequest.model.js";
 import { ApiKeyError } from "./api-key-service.js";
 
 function getBearerKey(request) {
@@ -39,6 +40,26 @@ export async function requireApiKey(request, _response, next) {
       ),
     );
     return;
+  }
+
+  // Enforce the entitlement at the point where a key is actually used. This
+  // also blocks any paid keys created before the server-side creation guard
+  // was introduced.
+  if (apiKey.plan !== "free") {
+    const approval = await findApprovedPremiumRequestByUserIdAndPlan(
+      apiKey.user_id,
+      apiKey.plan,
+    );
+    if (!approval.rows[0]) {
+      next(
+        new ApiKeyError(
+          "PREMIUM_APPROVAL_REQUIRED",
+          "This API key's paid plan requires an approved premium request.",
+          403,
+        ),
+      );
+      return;
+    }
   }
 
   request.apiKeyAuth = {

@@ -30,6 +30,12 @@ export function countRequestsToday() {
   );
 }
 
+export function countRequestsThisMonth() {
+  return query(
+    "SELECT COALESCE(SUM(request_count), 0) AS total FROM api_usage WHERE date >= DATE_FORMAT(UTC_DATE(), '%Y-%m-01')",
+  );
+}
+
 export function countRequestsFailed() {
   return query(
     "SELECT COALESCE(SUM(request_count), 0) AS total FROM api_usage WHERE response_status >= 400",
@@ -38,9 +44,21 @@ export function countRequestsFailed() {
 
 export function listAllUsers(limit = 100, offset = 0) {
   return query(
-    `SELECT id, organization_name, contact_email, status, created_at
-     FROM users
-     ORDER BY created_at DESC
+    `SELECT u.id, u.organization_name, u.contact_email, u.status, u.created_at,
+       COALESCE(active_plan.plan, 'free') AS plan
+     FROM users u
+     LEFT JOIN (
+       SELECT user_id,
+         CASE
+           WHEN SUM(plan = 'enterprise') > 0 THEN 'enterprise'
+           WHEN SUM(plan = 'business') > 0 THEN 'business'
+           ELSE 'free'
+         END AS plan
+       FROM api_keys
+       WHERE status = 'active'
+       GROUP BY user_id
+     ) AS active_plan ON active_plan.user_id = u.id
+     ORDER BY u.created_at DESC
      LIMIT ? OFFSET ?`,
     [limit, offset],
   );
