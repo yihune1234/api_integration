@@ -1,5 +1,41 @@
+<<<<<<< HEAD
 node_modules/
 .env
 *.log
 .git_disabled/
 dist/
+=======
+# Dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+.npm/
+
+# Local configuration and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Runtime and generated output
+dist/
+build/
+coverage/
+logs/
+*.log
+*.pid
+npm-debug.log*
+
+# Temporary test artifacts (keep test source and fixtures)
+test/tmp-*
+test/results/
+test/reports/
+
+# Tooling and operating-system files
+.cache/
+.eslintcache
+.tsbuildinfo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+>>>>>>> origin/api-server
