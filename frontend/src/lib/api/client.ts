@@ -9,6 +9,7 @@ const API_BASE = (import.meta.env.VITE_API_BASE_URL as string) || "http://127.0.
 const ACCESS_TOKEN_KEY = "eb_access_token";
 const REFRESH_TOKEN_KEY = "eb_refresh_token";
 const SESSION_KEY = "eb_session";
+const REQUEST_TIMEOUT_MS = 15_000;
 
 export class ApiError extends Error {
   status: number;
@@ -96,7 +97,19 @@ export async function apiFetch<T = unknown>(
 
   const url = path.startsWith("http") ? path : `${API_BASE}${path}`;
 
-  let res = await fetch(url, { method, headers, body: payload });
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  let res: Response;
+  try {
+    res = await fetch(url, { method, headers, body: payload, signal: controller.signal });
+  } catch (error: any) {
+    if (error?.name === "AbortError") {
+      throw new ApiError(504, "REQUEST_TIMEOUT", "The server took too long to respond. Please try again.");
+    }
+    throw error;
+  } finally {
+    window.clearTimeout(timeout);
+  }
 
   // If an access token was used and we get 401, try a silent refresh once.
   if (res.status === 401 && authToken && !skipAuth && getRefreshToken()) {

@@ -13,6 +13,7 @@ import {
   LogOut,
   Menu,
   SlidersHorizontal,
+  Crown,
   Terminal,
   UserCog,
   Users,
@@ -65,6 +66,7 @@ export function Shell({
     { href: "/app/usage", label: "Usage & requests", icon: BarChart3 },
     { href: "/app/docs", label: "Documentation", icon: BookOpen },
     { href: "/app/playground", label: "Playground", icon: Terminal },
+    { href: "/app/premium", label: "Premium", icon: Crown },
   ];
   const adminItems = [
     { href: "/admin/dashboard", label: "Platform overview", icon: Gauge },
@@ -72,6 +74,7 @@ export function Shell({
     { href: "/admin/api-keys", label: "All API keys", icon: KeyRound },
     { href: "/admin/logs", label: "Activity logs", icon: ListFilter },
     { href: "/admin/plans", label: "Plans & limits", icon: SlidersHorizontal },
+    { href: "/admin/premium-requests", label: "Premium requests", icon: Crown },
   ];
   const items = role === "admin" ? adminItems : userItems;
   const title = role === "admin" ? "Operations console" : "Organization workspace";

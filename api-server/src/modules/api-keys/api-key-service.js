@@ -7,6 +7,7 @@ import {
 } from "../../db/models/api-keys.js";
 import { createRateLimit } from "../../db/models/rate-limits.js";
 import { findPlanMaxRequests } from "../../db/models/admin-queries.js";
+import { findApprovedPremiumRequestByUserIdAndPlan } from "../../db/models/premiumRequest.model.js";
 import { logActivity } from "../logging/activity-logger.js";
 
 export class ApiKeyError extends Error {
@@ -80,7 +81,24 @@ export function listForUser(userId) {
 }
 
 export async function createForUser(userId, body, request) {
-  const plan = body.plan ?? "free";
+  const plan = typeof body.plan === "string" ? body.plan : "free";
+  if (!["free", "business", "enterprise"].includes(plan)) {
+    throw new ApiKeyError("VALIDATION_ERROR", "Unsupported plan.", 422);
+  }
+
+  // Paid keys are available only after an administrator approves an upgrade.
+  // This server-side check keeps direct API callers from bypassing the UI.
+  if (plan !== "free") {
+    const approved = await findApprovedPremiumRequestByUserIdAndPlan(userId, plan);
+    if (approved.rows[0]) {
+      return generateForUser(userId, plan, request, "key.created");
+    }
+    throw new ApiKeyError(
+      "PREMIUM_APPROVAL_REQUIRED",
+      `A ${plan} API key requires an approved ${plan} request.`,
+      403,
+    );
+  }
   return generateForUser(userId, plan, request, "key.created");
 }
 

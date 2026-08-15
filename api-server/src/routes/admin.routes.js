@@ -20,27 +20,27 @@ router.post("/admin/login", adminLoginHandler);
 // Authenticated admin routes
 router.get(
   "/admin/users",
-  requireAdminRole(["super_admin", "support", "read_only"]),
+  requireAdminRole(["super_admin", "admin", "support", "read_only"]),
   listUsersHandler,
 );
 router.get(
   "/admin/api-keys",
-  requireAdminRole(["super_admin", "support", "read_only"]),
+  requireAdminRole(["super_admin", "admin", "support", "read_only"]),
   listApiKeysHandler,
 );
 router.post(
   "/admin/api-keys/:id/revoke",
-  requireAdminRole(["super_admin", "support"]),
+  requireAdminRole(["super_admin", "admin", "support"]),
   revokeApiKeyHandler,
 );
 router.get(
   "/admin/logs",
-  requireAdminRole(["super_admin", "support", "read_only"]),
+  requireAdminRole(["super_admin", "admin", "support", "read_only"]),
   listLogsHandler,
 );
 router.get(
   "/admin/plans",
-  requireAdminRole(["super_admin", "support", "read_only"]),
+  requireAdminRole(["super_admin", "admin", "support", "read_only"]),
   listPlansHandler,
 );
 router.put(
@@ -50,7 +50,7 @@ router.put(
 );
 router.get(
   "/admin/dashboard",
-  requireAdminRole(["super_admin", "support", "read_only"]),
+  requireAdminRole(["super_admin", "admin", "support", "read_only"]),
   dashboardHandler,
 );
 

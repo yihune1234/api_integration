@@ -9,8 +9,8 @@ export function LoginPage({
   onLogin: (session: Session) => void;
 }) {
   const [role, setRole] = useState<"user" | "admin">("user");
-  const [email, setEmail] = useState("ops@awash.et");
-  const [password, setPassword] = useState("ethiobridge-demo");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -90,7 +90,8 @@ export function LoginPage({
               className={role === "user" ? "role-active" : ""}
               onClick={() => {
                 setRole("user");
-                setEmail("ops@awash.et");
+                setEmail("");
+                setPassword("");
               }}
               role="tab"
               aria-selected={role === "user"}
@@ -102,7 +103,8 @@ export function LoginPage({
               className={role === "admin" ? "role-active" : ""}
               onClick={() => {
                 setRole("admin");
-                setEmail("admin@ethiobridge.et");
+                setEmail("");
+                setPassword("");
               }}
               role="tab"
               aria-selected={role === "admin"}
@@ -135,6 +137,7 @@ export function LoginPage({
                   type="button"
                   className="text-button"
                   data-testid="button-forgot-password"
+                  onClick={() => { window.location.href = "/forgot-password"; }}
                 >
                   Forgot password?
                 </button>
@@ -172,6 +175,11 @@ export function LoginPage({
                 )}
             </Button>
           </form>
+          {role === "user" && (
+            <p className="login-legal">
+              New to EthioBridge? <a href="/register">Create your organization workspace</a>
+            </p>
+          )}
           <div className="demo-hint">
             <Zap size={15} />
             <span>

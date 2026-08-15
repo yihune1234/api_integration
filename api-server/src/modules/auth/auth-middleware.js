@@ -16,6 +16,9 @@ export function requireJwt(request, _response, next) {
 
   try {
     const payload = verifyToken(token, "access");
+    if (payload.role) {
+      throw new Error("Admin tokens cannot access organization routes");
+    }
     request.auth = { userId: payload.sub, tokenType: payload.type };
     next();
   } catch {

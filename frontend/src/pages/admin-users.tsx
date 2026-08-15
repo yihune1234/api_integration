@@ -79,6 +79,7 @@ export function AdminUsersPage() {
                 <tr>
                   <th>Organization</th>
                   <th>Workspace ID</th>
+                  <th>Plan</th>
                   <th>Status</th>
                   <th>Created</th>
                 </tr>
@@ -93,6 +94,7 @@ export function AdminUsersPage() {
                       </div>
                     </td>
                     <td className="mono muted">{user.id}</td>
+                    <td><Badge tone={user.plan === "free" ? "neutral" : "success"}>{user.plan}</Badge></td>
                     <td><Badge tone={user.status === "active" ? "success" : "warning"}>{user.status}</Badge></td>
                     <td className="muted">{formatDate(user.created_at)}</td>
                   </tr>

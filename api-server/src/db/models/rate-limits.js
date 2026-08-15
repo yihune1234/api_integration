@@ -29,6 +29,46 @@ export function findRateLimitByApiKeyId(apiKeyId) {
   return query("SELECT * FROM rate_limits WHERE api_key_id = ?", [apiKeyId]);
 }
 
+export function getRateLimitSummaryByUserId(userId) {
+  return query(
+    `SELECT
+       COALESCE(SUM(rl.max_requests), 0) AS max_requests,
+       COALESCE(SUM(rl.remaining_requests), 0) AS remaining_requests,
+       MIN(rl.reset_at) AS reset_at
+     FROM rate_limits rl
+     JOIN api_keys ak ON ak.id = rl.api_key_id
+     WHERE ak.user_id = ? AND ak.status = 'active'`,
+    [userId],
+  );
+}
+
+export function getPlatformRateLimitSummary() {
+  return query(
+    `SELECT
+       COALESCE(SUM(rl.max_requests), 0) AS max_requests,
+       COALESCE(SUM(rl.remaining_requests), 0) AS remaining_requests
+     FROM rate_limits rl
+     JOIN api_keys ak ON ak.id = rl.api_key_id
+     WHERE ak.status = 'active'`,
+  );
+}
+
+/**
+ * Integration point for the premium module: propagate a max-request limit to
+ * all rate-limit rows belonging to a user's active keys. Used when a premium
+ * request is approved (keeps api_keys.plan and rate_limits.max_requests in
+ * sync through existing models, not duplicated premium queries).
+ */
+export function updateRateLimitMax({ userId, maxRequests }) {
+  return query(
+    `UPDATE rate_limits rl
+     JOIN api_keys ak ON ak.id = rl.api_key_id
+     SET rl.max_requests = ?, rl.remaining_requests = ?
+     WHERE ak.user_id = ? AND ak.status = 'active'`,
+    [maxRequests, maxRequests, userId],
+  );
+}
+
 export async function consumeRateLimit(apiKeyId) {
   const client = await pool.getConnection();
   try {

@@ -1,5 +1,13 @@
 import { listUsageByUserId } from "../../db/models/api-usage.js";
 import { findUserById } from "../../db/models/users.js";
+import { getRateLimitSummaryByUserId } from "../../db/models/rate-limits.js";
+
+function localDateKey(value = new Date()) {
+  if (typeof value === "string") return value.slice(0, 10);
+  const month = String(value.getMonth() + 1).padStart(2, "0");
+  const day = String(value.getDate()).padStart(2, "0");
+  return `${value.getFullYear()}-${month}-${day}`;
+}
 
 /**
  * GET /user/usage
@@ -12,10 +20,13 @@ import { findUserById } from "../../db/models/users.js";
  * - successful: total successful requests
  */
 export async function getUserUsageHandler(request, response) {
-  const result = await listUsageByUserId(request.auth.userId);
+  const [result, rateLimitResult] = await Promise.all([
+    listUsageByUserId(request.auth.userId),
+    getRateLimitSummaryByUserId(request.auth.userId),
+  ]);
   const rows = result.rows;
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDateKey();
   const thisMonth = today.slice(0, 7);
 
   const stats = {
@@ -27,10 +38,7 @@ export async function getUserUsageHandler(request, response) {
   };
 
   for (const row of rows) {
-    const dateStr =
-      typeof row.date === "string"
-        ? row.date.slice(0, 10)
-        : new Date(row.date).toISOString().slice(0, 10);
+    const dateStr = localDateKey(row.date);
 
     stats.total += row.request_count;
 
@@ -51,7 +59,21 @@ export async function getUserUsageHandler(request, response) {
     }
   }
 
-  response.json({ status: "success", usage: stats });
+  const rateLimit = rateLimitResult.rows[0] ?? {};
+  const limit = Number(rateLimit.max_requests ?? 0);
+  const remaining = Number(rateLimit.remaining_requests ?? 0);
+  response.json({
+    status: "success",
+    usage: {
+      ...stats,
+      quota: {
+        limit,
+        used: Math.max(0, limit - remaining),
+        remaining,
+        resetAt: rateLimit.reset_at ?? null,
+      },
+    },
+  });
 }
 
 /**

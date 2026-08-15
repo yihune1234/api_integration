@@ -34,7 +34,9 @@ function authenticateAdmin(request, next) {
  * Runs before admin routes; sets `request.admin = { adminId, role }`.
  */
 export function requireAdmin(request, _response, next) {
-  authenticateAdmin(request, next);
+  if (authenticateAdmin(request, next)) {
+    next();
+  }
 }
 
 /**

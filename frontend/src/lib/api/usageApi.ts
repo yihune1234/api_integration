@@ -19,6 +19,12 @@ export interface UsageResponse {
     monthly: number;
     failed: number;
     successful: number;
+    quota: {
+      limit: number;
+      used: number;
+      remaining: number;
+      resetAt: string | null;
+    };
   };
 }
 
