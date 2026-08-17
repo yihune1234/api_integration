@@ -250,11 +250,232 @@ npm run start
 # Ensure NODE_ENV=production and all env vars are set
 ```
 
-## 📖 Documentation
+## 🔌 API Integration Guide
 
-- [Backend API Specification](api-server/docs/EthioBridge_API_Platform_Specification.md)
-- [Database Schema & Folder Structure](api-server/docs/EthioBridge_API_DB_Schema_and_Folder_Structure.md)
-- [API Contract for Frontend](api-server/docs/EthioBridge_Backend_API_Contract_for_Frontend.md)
+### Getting an API Key
+
+1. **Register an organization** (if not already registered):
+   ```bash
+   curl -X POST http://localhost:3000/auth/register \
+     -H "Content-Type: application/json" \
+     -d '{"organizationName": "My Company", "email": "dev@mycompany.com", "password": "securepass123"}'
+   ```
+
+2. **Login to get JWT**:
+   ```bash
+   curl -X POST http://localhost:3000/auth/login \
+     -H "Content-Type: application/json" \
+     -d '{"email": "dev@mycompany.com", "password": "securepass123"}'
+   ```
+   Save the `accessToken` from the response.
+
+3. **Create an API Key** (using JWT):
+   ```bash
+   curl -X POST http://localhost:3000/api-keys \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer YOUR_JWT_ACCESS_TOKEN" \
+     -d '{"plan": "free"}'
+   ```
+   **Save the `apiKey` immediately** — it's only shown once!
+
+---
+
+### Using the Extraction API
+
+**Endpoint**: `POST /v1/extract`  
+**Auth**: `Authorization: Bearer YOUR_API_KEY`  
+**Content-Type**: `multipart/form-data` (file upload)  
+**Max file size**: 10MB (configurable via `MAX_FILE_SIZE`)
+
+#### Supported Formats
+| Format | Extensions | MIME Types |
+|--------|------------|------------|
+| JSON | `.json` | `application/json` |
+| XML | `.xml` | `application/xml`, `text/xml` |
+| CSV | `.csv` | `text/csv` |
+| Excel | `.xls`, `.xlsx` | `application/vnd.ms-excel`, `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` |
+
+---
+
+### Integration Examples
+
+#### cURL
+```bash
+# Extract JSON file
+curl -X POST http://localhost:3000/v1/extract \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@data.json"
+
+# Extract CSV file
+curl -X POST http://localhost:3000/v1/extract \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@data.csv"
+
+# Extract Excel file
+curl -X POST http://localhost:3000/v1/extract \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@data.xlsx"
+```
+
+#### Python (requests)
+```python
+import requests
+
+API_KEY = "YOUR_API_KEY"
+BASE_URL = "http://localhost:3000"
+
+def extract_document(file_path):
+    with open(file_path, 'rb') as f:
+        files = {'file': f}
+        headers = {'Authorization': f'Bearer {API_KEY}'}
+        response = requests.post(f'{BASE_URL}/v1/extract', files=files, headers=headers)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Error {response.status_code}: {response.text}")
+
+# Usage
+result = extract_document("data.json")
+print(result)
+```
+
+#### Node.js (fetch)
+```javascript
+const fs = require('fs');
+const FormData = require('form-data');
+
+const API_KEY = 'YOUR_API_KEY';
+const BASE_URL = 'http://localhost:3000';
+
+async function extractDocument(filePath) {
+  const form = new FormData();
+  form.append('file', fs.createReadStream(filePath));
+
+  const response = await fetch(`${BASE_URL}/v1/extract`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`,
+      ...form.getHeaders()
+    },
+    body: form
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: ${await response.text()}`);
+  }
+  return response.json();
+}
+
+// Usage
+extractDocument('data.json')
+  .then(console.log)
+  .catch(console.error);
+```
+
+#### JavaScript/TypeScript (Frontend)
+```typescript
+async function extractFile(file: File, apiKey: string) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await fetch('http://localhost:3000/v1/extract', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`
+    },
+    body: formData
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Extraction failed');
+  }
+  return response.json();
+}
+
+// Usage with file input
+const fileInput = document.getElementById('file-input') as HTMLInputElement;
+fileInput.addEventListener('change', async (e) => {
+  const file = e.target.files?.[0];
+  if (file) {
+    try {
+      const result = await extractFile(file, 'YOUR_API_KEY');
+      console.log('Extracted data:', result);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+});
+```
+
+---
+
+### Response Format
+
+**Success (200)**:
+```json
+{
+  "status": "success",
+  "data": {
+    "format": "json",
+    "recordCount": 150,
+    "extractedAt": "2026-08-17T10:30:00.000Z",
+    "records": [
+      { "id": 1, "name": "Item 1", "value": 100 },
+      { "id": 2, "name": "Item 2", "value": 200 }
+    ]
+  }
+}
+```
+
+**Error Responses**:
+| Status | Error Code | Description |
+|--------|------------|-------------|
+| 401 | `MISSING_API_KEY` | No API key provided |
+| 401 | `INVALID_API_KEY` | Key invalid, revoked, or expired |
+| 429 | `RATE_LIMIT_EXCEEDED` | Daily limit reached |
+| 415 | `UNSUPPORTED_FORMAT` | File type not supported |
+| 413 | `FILE_TOO_LARGE` | Exceeds 10MB limit |
+| 400 | `EMPTY_FILE` | No extractable content |
+| 500 | `INTERNAL_ERROR` | Server processing error |
+
+---
+
+### Rate Limits
+
+| Plan | Daily Requests |
+|------|----------------|
+| Free | 100 |
+| Business | 10,000 |
+| Enterprise | Unlimited |
+
+Headers in response:
+- `X-RateLimit-Limit`: Max requests per day
+- `X-RateLimit-Remaining`: Requests left today
+- `X-RateLimit-Reset`: Unix timestamp when limit resets
+
+---
+
+### Best Practices
+
+1. **Store API keys securely** — Use environment variables, never hardcode
+2. **Handle rate limits** — Check `X-RateLimit-Remaining`, implement backoff
+3. **Validate file before upload** — Check size and type client-side
+4. **Use appropriate plan** — Upgrade to Business/Enterprise for higher volume
+5. **Monitor usage** — Check `/user/usage` endpoint or admin dashboard
+6. **Rotate keys periodically** — Use `/api-keys/:id/regenerate` endpoint
+
+---
+
+### Testing with the API Playground
+
+Visit the frontend at `http://localhost:5173/docs` for an interactive API playground where you can:
+- Test extraction with sample files
+- View request/response examples
+- Generate code snippets in multiple languages
+
+## 📖 Documentation
 
 ## 🤝 Contributing
 
