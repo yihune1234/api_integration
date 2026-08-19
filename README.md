@@ -2,7 +2,7 @@
 
 A secure document extraction API platform that accepts JSON, XML, CSV, and Excel files, extracts their data, converts it into a standardized JSON format, and returns it immediately. Built as a metered API product with self-serve account management, API keys, usage tracking, and plan-based rate limiting.
 
-## 🏗️ Architecture
+##Architecture
 
 ```
 api_integration/
@@ -121,7 +121,7 @@ The frontend will be available at `http://localhost:5173` and the API at `http:/
 | `npm run migrate` | Run database migrations |
 | `npm run typecheck` | Run syntax check on all JS files |
 
-## 🔐 Authentication
+## Authentication
 
 Two separate authentication mechanisms:
 
@@ -135,7 +135,7 @@ Two separate authentication mechanisms:
 | Business | 10,000 requests/day |
 | Enterprise | Unlimited/Negotiated |
 
-## 📚 API Endpoints (MVP)
+## API Endpoints (MVP)
 
 ### Authentication
 - `POST /auth/register` - Register organization
@@ -164,7 +164,7 @@ Two separate authentication mechanisms:
 - `GET /admin/plans` - Manage plans
 - `GET /admin/dashboard` - Aggregate statistics
 
-## 🗄️ Database Schema
+## Database Schema
 
 Key tables:
 - `users` - Organizations (name, email, password_hash, status)
@@ -183,7 +183,7 @@ Key tables:
 - **HTTPS**: Required in production
 - **Input Validation**: File type and size validation on all uploads
 
-## 📁 Project Structure
+## Project Structure
 
 ### Frontend
 ```
@@ -250,7 +250,7 @@ npm run start
 # Ensure NODE_ENV=production and all env vars are set
 ```
 
-## 🔌 API Integration Guide
+## API Integration Guide
 
 ### Getting an API Key
 
@@ -475,9 +475,9 @@ Visit the frontend at `http://localhost:5173/docs` for an interactive API playgr
 - View request/response examples
 - Generate code snippets in multiple languages
 
-## 📖 Documentation
+## Documentation
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
